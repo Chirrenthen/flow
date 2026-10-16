@@ -36,7 +36,7 @@ A lightweight, touch-free gesture remote for Android TV and Google TV built with
 
 ### 1. Clone or Download Repository
 ```bash
-git clone [https://github.com/chirrenthen/flow.git](https://github.com/chirrenthen/flow.git)
+git clone https://github.com/Chirrenthen/flow.git
 cd flow
 ```
 
