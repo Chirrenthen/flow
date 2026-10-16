@@ -36,8 +36,8 @@ A lightweight, touch-free gesture remote for Android TV and Google TV built with
 
 ### 1. Clone or Download Repository
 ```bash
-git clone [https://github.com/your-username/wavetv.git](https://github.com/your-username/wavetv.git)
-cd wavetv
+git clone [https://github.com/chirrenthen/flow.git](https://github.com/chirrenthen/flow.git)
+cd flow
 ```
 
 ### 2. Set Up a Virtual Environment
