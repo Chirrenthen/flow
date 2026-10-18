@@ -7,36 +7,37 @@ A lightweight, touch-free gesture remote for Android TV and Google TV built with
 ## Features
 
 - **Zero Sideloading Required:** Uses the official Google TV Remote Protocol v2 over Wi-Fi with secure on-screen PIN pairing.
-- **Palm-Relative Calibration:** All motion vectors and finger spreads are normalized against palm size, making tracking distance- and hand-size agnostic.
-- **Fatigue-Free Ergonomics:** Designed for micro-swipes and relaxed postures—rest your elbow on your armrest and flick your wrist.
-- **Anti-False-Trigger Logic:** Auto-locks after 8 seconds of inactivity and requires a deliberate 1.5-second open-palm hold to activate.
-- **Real-Time HUD:** On-screen visual indicators for connection status, recognized pose, hold progress bar, and sent keycodes.
+- **Natural Swipe Tracking:** Tracks your fingertip motion smoothly across the screen and automatically ignores your hand when moving back to its starting position.
+- **Anti-False-Trigger Logic:** Static actions only trigger when your hand is held still, and the remote automatically enters standby after 45 seconds of inactivity.
+- **Real-Time HUD:** On-screen visual indicators for fingertip trails, recognized pose, hold progress bar, and sent keycodes.
 - **Failover Support:** Automatically attempts native Protocol v2 pairing, with a seamless fallback to ADB over Wi-Fi if needed.
 
 ---
 
-## Gesture Cheat Sheet
+## Gestures
 
 | Action | Pose / Movement | Hold / Window | Keycode Sent |
 |---|---|---|---|
-| **Wake / Sleep Toggle** | Open hand, 5 fingers spread (`OPEN_PALM`) | Hold 1.5s | `WAKE` / `SLEEP` |
-| **Navigate Left** | Quick horizontal flick to the left | < 0.22s | `DPAD_LEFT` |
-| **Navigate Right** | Quick horizontal flick to the right | < 0.22s | `DPAD_RIGHT` |
-| **Navigate Up** | Quick vertical flick upward | < 0.22s | `DPAD_UP` |
-| **Navigate Down** | Quick vertical flick downward | < 0.22s | `DPAD_DOWN` |
-| **Select / Enter** | Thumb tip touches index tip (`PINCH`) | Hold 0.35s | `DPAD_CENTER` |
-| **Back / Return** | Index & middle fingers raised (`PEACE`) | Hold 0.6s | `BACK` |
-| **Volume Up** | Index finger pointing up (`POINT_UP`) | Hold 0.4s (repeats) | `VOLUME_UP` |
-| **Volume Down** | Closed fist (`FIST`) | Hold 0.4s (repeats) | `VOLUME_DOWN` |
-| **Power Toggle** | Index & pinky extended (`ROCK_ON`) | Hold 2.5s | `POWER` |
+| **Navigate Left** | Point and swipe left across the screen | < 0.45s | `DPAD_LEFT` |
+| **Navigate Right** | Point and swipe right across the screen | < 0.45s | `DPAD_RIGHT` |
+| **Navigate Up** | Point and swipe upward across the screen | < 0.45s | `DPAD_UP` |
+| **Navigate Down** | Point and swipe downward across the screen | < 0.45s | `DPAD_DOWN` |
+| **Safe Move (Clutch)** | Closed fist (0 fingers) | Instant | *Pauses tracking* |
+| **Select / Enter** | Pinch (Thumb + Index) **or** Open Palm (5 fingers) held still | Hold 0.45s | `DPAD_CENTER` |
+| **Back / Return** | 2 Fingers (Index & middle raised) held still | Hold 0.55s | `BACK` |
+| **Volume Up** | 3 Fingers raised and held still | Hold 0.4s (repeats) | `VOLUME_UP` |
+| **Volume Down** | 4 Fingers raised (thumb tucked) and held still | Hold 0.4s (repeats) | `VOLUME_DOWN` |
+| **Wake from Standby** | Open hand (5 fingers spread) | Hold 1.0s | `WAKE` |
 
-> **Note:** The system defaults to **LOCKED** on startup. Hold an **Open Palm** for 1.5 seconds until the status bar turns green before issuing commands.
+> **Note:** After swiping in any direction, you can naturally move your hand back to the center—Flow automatically ignores the return motion so it won't trigger an accidental opposite swipe.
+
+---
 
 ## Installation
 
 ### 1. Clone or Download Repository
 ```bash
-git clone https://github.com/Chirrenthen/flow.git
+git clone [https://github.com/Chirrenthen/flow.git](https://github.com/Chirrenthen/flow.git)
 cd flow
 ```
 
@@ -77,8 +78,9 @@ pip install -r requirements.txt
    - Enter the 6-digit PIN in your terminal and hit `Enter`.
    - Local SSL certificates (`cert.pem`, `key.pem`) and your TV state (`tv_state.json`) will be cached locally. Subsequent runs connect automatically.
 4. **Operation:**
-   - Hold an **Open Palm** steady for 1.5 seconds to unlock.
-   - Use swipes for navigation and pinch to select.
+   - Point and swipe across the screen to navigate menus.
+   - Hold a **Pinch** or **Open Hand** still to select, or **2 Fingers** to go back.
+   - Close your hand into a **Fist** whenever you want to rest or move your hand without triggering commands.
    - Press `q` or `Esc` inside the camera window to cleanly exit.
 
 ---
@@ -90,6 +92,12 @@ pip install -r requirements.txt
 - **Reset connection / Pair with a new TV:** Delete `tv_state.json`, `cert.pem`, and `key.pem` from the project folder and re-run `python main.py`.
 
 ---
+
+## Attributes
+This project contains modified code from: ![kinvi](https://github.com/kinivi/hand-gesture-recognition-mediapipe)
+
+## License
+This project is licensed under the ![BSD-3-Clause License](https://github.com/Chirrenthen/flow/blob/main/LICENSE)
 
 Feel free to modify, extend, and use for your maker setups.!
 Make sure to leave a star..
