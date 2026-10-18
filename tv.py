@@ -77,7 +77,7 @@ def discover_tv():
 async def _async_setup_remote(ip):
     global _remote, _connected
     _remote = AndroidTVRemote(
-        client_name="Gesture Remote",
+        client_name="WaveTV Gesture Remote",
         certfile=config.CERT_FILE,
         keyfile=config.KEY_FILE,
         host=ip,
@@ -110,7 +110,7 @@ def _setup_adb_fallback(ip):
     print(f"Trying ADB fallback on {ip}:5555...")
     res = subprocess.run(["adb", "connect", f"{ip}:5555"], capture_output=True, text=True)
     if "connected" in res.stdout.lower():
-        print("Please check your TV screen and click 'Allow USB Debugging' if prompted.")
+        print("Check your TV screen and click 'Allow USB Debugging' if prompted.")
         _connected = True
         return True
     print(f"ADB connection failed: {res.stdout.strip()}")
@@ -136,7 +136,7 @@ def init_tv():
     elif _setup_adb_fallback(_host):
         _mode = "adb"
     else:
-        print("WARNING: Running in offline demo mode (TV not reachable).")
+        print("WARNING: Running in offline camera test mode (TV not reachable).")
         return
 
     with open(config.STATE_FILE, "w") as f:
